@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New Content</title>
+</head>
+<body>
+<h1>Add New Content</h1>
+<form th:action="@{/board/new}" th:object="${board}" method="post">
+    <div >
+        <label for="title">title:</label>
+        <input type="text" id="title" th:field="*{title}"  />
+    </div>
+    <div >
+        <label for="content">content:</label>
+        <input type="text" id="content" th:field="*{content}"  />
+    </div>
+
+    <div >
+        <label for="createdAt">createdAt:</label>
+        <input type="text" id="createdAt" th:field="*{createdAt}"  />
+    </div>
+
+    <div >
+        <label for="createdBy">createdBy:</label>
+        <input type="text" id="createdBy" th:field="*{createdBy}"  />
+    </div>
+
+    <div>
+        <button type="submit">Save</button>
+    </div>
+</form>
+</body>
+</html>

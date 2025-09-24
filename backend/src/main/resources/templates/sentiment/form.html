@@ -1,0 +1,36 @@
+<!-- src/main/resources/templates/sentiment/form.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>감성 분석 입력</title>
+</head>
+<body>
+<h2>리뷰 입력</h2>
+<form th:action="@{/sentiment/analyze}" method="post" onsubmit="return validateForm()">
+    <textarea name="review" rows="5" cols="50" placeholder="리뷰를 입력하세요"></textarea><br>
+    <button type="submit">감성 분석</button>
+</form>
+
+<h3>최근 리뷰 5개</h3>
+<ul>
+    <li th:each="review : ${recent_reviews}">
+        <span th:text="${review['review_text']}">리뷰내용</span>
+        (점수: <span th:text="${review['sentiment_score']}">0</span>)
+    </li>
+</ul>
+
+
+<script>
+    //리뷰 입력 폼이 제출되기 전 유효성 체크 (내용이 비였는지)
+    function validateForm() {
+        const review = document.querySelector("textarea[name='review']").value.trim();
+        if (!review) {
+            alert("리뷰를 입력해주세요.");
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>
